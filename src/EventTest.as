@@ -19,7 +19,7 @@ package
 			processorVar.addEventListener(Event.RENDER,onSuccess);
 			processorVar.addEventListener(Event.CANCEL,onError);
 			
-			processorVar.huge(3);
+			processorVar.huge(); 
 			trace("What is processor data now?? "+processorVar.calc);
 			trace("Update interface");
 		}
@@ -34,7 +34,7 @@ package
 		private function onError(event:Event)
 		{
 			trace("ERROR!!!!!!!!!!!!!!! "+processorVar.calc);
-			processorVar.huge(2);
+			processorVar.huge();
 		}
 		
 		

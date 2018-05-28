@@ -2,6 +2,7 @@ package
 {
 	import flash.events.Event;
 	import flash.events.EventDispatcher;
+	import flash.utils.setTimeout;
 
 	[Event(name="render", type="flash.events.Event")]
 	[Event(name="cancel", type="flash.events.Event")]
@@ -16,16 +17,17 @@ package
 		}
 		
 		
-		public function huge(initParam:Number):void
+		public function huge():void
 		{
-			calc = initParam ;
-			trace("* loop started with : "+calc);
-			for(var i:int = 0 ; i<1000000 ;i++)
-			{
-				calc = Math.sin(Math.cos(Math.tan(Math.log(calc))));
-			}
+			trace("* Connect to web and fetch some data... "+calc);
+			 
+			setTimeout(processDone,Math.random()*10000);
+		}
+		
+		private function processDone():void
+		{
 			trace("* loop ended");
-			
+			calc = 8 ;
 			if(isNaN(calc))
 			{
 				this.dispatchEvent(new Event(Event.CANCEL));
