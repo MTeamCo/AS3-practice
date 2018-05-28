@@ -10,19 +10,10 @@ package
 			var a:uint = 0 ;
 			var b:uint = 2 ;
 			trace("Variables sat : "+a+' , '+b);
-			huge();
+			var processorVar:Processor = new Processor();
+			processorVar.huge();
 			trace("Update interface");
 		}
 		
-			public function huge():void
-			{
-				var calc:Number = 2 ;
-				trace("* loop started");
-				for(var i:int = 0 ; i<10000000 ;i++)
-				{
-					calc = Math.sin(Math.cos(Math.tan(Math.log(calc))));
-				}
-				trace("* loop ended");
-			}
 	}
 }
