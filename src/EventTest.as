@@ -11,8 +11,20 @@ package
 			var b:uint = 2 ;
 			trace("Variables sat : "+a+' , '+b);
 			var processorVar:Processor = new Processor();
-			processorVar.huge();
+			trace("What is processor data?? "+processorVar.calc);
+			processorVar.huge(2,onError,onSuccess);
+			trace("What is processor data now?? "+processorVar.calc);
 			trace("Update interface");
+		}
+		
+		private function onError()
+		{
+			trace("ERROR!!!!!!!!!!!!!!!");
+		}
+		
+		private function onSuccess()
+		{
+			trace("Done!!!!!!!!!")
 		}
 		
 	}
