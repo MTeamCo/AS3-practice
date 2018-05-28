@@ -1,31 +1,43 @@
 package
 {
 	import flash.display.Sprite;
+	import flash.events.Event;
 	
 	public class EventTest extends Sprite
 	{
+
+		private var processorVar:Processor;
+		
 		public function EventTest()
 		{
 			trace("App Began!");
 			var a:uint = 0 ;
 			var b:uint = 2 ;
 			trace("Variables sat : "+a+' , '+b);
-			var processorVar:Processor = new Processor();
+			processorVar = new Processor();
 			trace("What is processor data?? "+processorVar.calc);
-			processorVar.huge(2,onError,onSuccess);
+			processorVar.addEventListener(Event.RENDER,onSuccess);
+			processorVar.addEventListener(Event.CANCEL,onError);
+			
+			processorVar.huge(3);
 			trace("What is processor data now?? "+processorVar.calc);
 			trace("Update interface");
 		}
 		
-		private function onError()
+		protected function onSuccess(event:Event):void
 		{
-			trace("ERROR!!!!!!!!!!!!!!!");
+			trace("Done!!!!!!!!! : "+processorVar.calc)
+			processorVar.removeEventListener(Event.RENDER,onSuccess);
+			processorVar.removeEventListener(Event.CANCEL,onError);
 		}
 		
-		private function onSuccess()
+		private function onError(event:Event)
 		{
-			trace("Done!!!!!!!!!")
+			trace("ERROR!!!!!!!!!!!!!!! "+processorVar.calc);
+			processorVar.huge(2);
 		}
+		
+		
 		
 	}
 }

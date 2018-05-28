@@ -1,16 +1,22 @@
 package
 {
-	public class Processor
+	import flash.events.Event;
+	import flash.events.EventDispatcher;
+
+	[Event(name="render", type="flash.events.Event")]
+	[Event(name="cancel", type="flash.events.Event")]
+	public class Processor extends EventDispatcher
 	{
 
 		public var calc:Number;
 		
 		public function Processor()
 		{
+			super();
 		}
 		
 		
-		public function huge(initParam:Number,onErrorFunctin:Function,onSuccessFunction:Function):void
+		public function huge(initParam:Number):void
 		{
 			calc = initParam ;
 			trace("* loop started with : "+calc);
@@ -22,12 +28,14 @@ package
 			
 			if(isNaN(calc))
 			{
-				onErrorFunctin();
+				this.dispatchEvent(new Event(Event.CANCEL));
 			}
 			else
 			{
-				onSuccessFunction();
+				this.dispatchEvent(new Event(Event.RENDER));
 			}
+			
+			trace("* Othe functions")
 		}
 	}
 }
